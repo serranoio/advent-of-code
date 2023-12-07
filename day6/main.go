@@ -120,5 +120,6 @@ func testPartOne(partOne bool, name string) {
 }
 
 func main() {
+	testPartOne(true, "adventday6.txt")
 	testPartOne(false, "adventday6.txt")
 }
