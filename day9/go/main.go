@@ -6,6 +6,7 @@ import (
 	"path"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func getAllLines(fileName string) []string {
@@ -118,6 +119,7 @@ func sum(all []int) int {
 }
 
 func main() {
+	timer := time.Now()
 
 	lines := getAllLines("adventday9.txt")
 
@@ -129,4 +131,5 @@ func main() {
 	theSum = sum(all)
 	fmt.Println("sum for part 2:", theSum)
 
+	fmt.Printf("Runtime: %d nanoseconds\n", time.Since(timer).Nanoseconds())
 }

@@ -1,4 +1,4 @@
-use std::{path::PathBuf, fs::File, io::{BufReader, Read}};
+use std::{path::PathBuf, fs::File, io::{BufReader, Read}, time::SystemTime};
 
 
 fn read_file(path: &PathBuf) -> String {
@@ -124,8 +124,7 @@ fn to_double_dimension_array(all_lines: Vec<String>, part_one: bool) -> i32 {
 } 
 
 fn main() {
-
-
+    let now = SystemTime::now();
     let all_lines = get_all_lines("adventday9.txt".to_owned());
     
     let all = to_double_dimension_array(all_lines.clone(), true);
@@ -134,6 +133,7 @@ fn main() {
     let all = to_double_dimension_array(all_lines, false);
     println!("Sum for part 2: {all}");
 
+    println!("Runtime: {} nanoseconds\n", now.elapsed().unwrap().as_nanos());
 }
 
 #[cfg(test)]
@@ -144,11 +144,8 @@ mod test {
 fn test_all_lines() {
     let all_lines = get_all_lines("test.txt".to_owned());
 
-
     assert_eq!(3, all_lines.len());
-
 }
-
 
 #[test]
 fn test_gather_differences() {
@@ -162,7 +159,6 @@ fn test_gather_differences() {
     assert_eq!(vec![0,0,0,0], differences);
 }
 
-
 #[test]
 fn test_calculate_differences() {
     let start: Vec<i32> = vec![0,3,6,9,12,15];
@@ -171,7 +167,6 @@ fn test_calculate_differences() {
 
     assert_eq!(vec![3,3,3,3,3], differences[1]);
     assert_eq!(vec![0,0,0,0], differences[2]);
-
 }
 
 #[test]
@@ -186,10 +181,6 @@ fn test_calculate_history() {
 
     let history = calculate_history(vec![10,13,16,21,30,45]);
     assert_eq!(68, history);
-
-
-    // assert_eq!(vec![0,0,0,0], differences[2]);
-
 }
 
 #[test]
