@@ -1,22 +1,16 @@
-use std::{path::PathBuf, fs::File, io::{BufReader, Read}, time::SystemTime};
-
-
-fn read_file(path: &PathBuf) -> String {
-    let file = File::open(path).unwrap();
-    let mut buf_reader = BufReader::new(file);
-    let mut contents = String::new();
-    buf_reader.read_to_string(&mut contents).unwrap();
-
-    contents    
-}
+use std::{path::PathBuf, fs::{File, self}, io::{BufReader, Read}, time::SystemTime};
 
 fn get_all_lines(file_name: String) -> Vec<String> {
-    let path = PathBuf::new().join("../").join(file_name);
+    let path = PathBuf::new().join("../").join(&file_name);
 
-    return read_file(&path).split("\n").map(|f| f.to_owned()).collect()
+    
+    
+    let contents = String::from_utf8(fs::read(path).unwrap()).unwrap();
+
+    contents.split("\n").map(|s| s.to_owned()).collect()
 }
 
-fn create_line_of_ints(line: &String) -> Vec<i32> {
+fn create_line_of_ints(line: &str) -> Vec<i32> {
     let mut line_of_ints: Vec<i32> = Vec::new();
 
     line.split(" ").for_each(|num| {
@@ -103,10 +97,10 @@ fn calculate_history2(line_of_ints: Vec<i32>) -> i32 {
 }
 
 
-fn to_double_dimension_array(all_lines: Vec<String>, part_one: bool) -> i32 {
+fn to_double_dimension_array(all_lines: &Vec<String>, part_one: bool) -> i32 {
     let mut all_histories: Vec<i32> = Vec::new();
 
-    all_lines.iter().for_each(|line: &String| {
+    all_lines.into_iter().for_each(|line| {
         let line_of_ints: Vec<i32> = create_line_of_ints(line);
 
         let history: i32;
@@ -127,10 +121,10 @@ fn main() {
     let now = SystemTime::now();
     let all_lines = get_all_lines("adventday9.txt".to_owned());
     
-    let all = to_double_dimension_array(all_lines.clone(), true);
+    let all = to_double_dimension_array(&all_lines, true);
     println!("Sum for part 1: {all}");
 
-    let all = to_double_dimension_array(all_lines, false);
+    let all = to_double_dimension_array(&all_lines, false);
     println!("Sum for part 2: {all}");
 
     println!("Runtime: {} nanoseconds\n", now.elapsed().unwrap().as_nanos());
