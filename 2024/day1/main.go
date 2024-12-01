@@ -83,10 +83,6 @@ func parseString(str string) ([]int, []int) {
 }
 
 func calculateSimilarityScore(leftList, rightList []int) int {
-
-	// take number in left list, see how many times it appears in right list
-	// multiply
-
 	totalSimilarityScore := 0
 	for i := 0; i < len(leftList); i++ {
 		leftNum := leftList[i]
@@ -124,7 +120,7 @@ func part1(fileName string) int {
 }
 
 func main() {
+	// run program to get solutions
 	fmt.Printf("Answer to part 1: %d\n", part1("input.txt"))
 	fmt.Printf("Answer to part 2: %d\n", part2("input.txt"))
-
 }

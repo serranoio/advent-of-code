@@ -1,6 +1,11 @@
 ## 2024 Advent of Code
 
+### Spiritual Goals
+
+- Full enjoyment
+- Full presence in the moment without any distractions
+
 ### Goals
 
-- Golang
+- get gud @ Golang
 - Test Driven Development
