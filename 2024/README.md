@@ -4,6 +4,7 @@
 
 - Full enjoyment
 - Full presence in the moment without any distractions
+- FLOW STATE BABY
 
 ### Goals
 
