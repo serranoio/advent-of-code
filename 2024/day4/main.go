@@ -55,23 +55,14 @@ func searchAtEveryPoint(coords [][]rune) int {
 	for y, line := range coords {
 		for x, c := range line {
 			if c == rune(X) {
-
 				count += searchXMAS(x, y, 1, 1, coords, c)
-
 				count += searchXMAS(x, y, -1, 1, coords, c)
-
 				count += searchXMAS(x, y, 1, -1, coords, c)
-
 				count += searchXMAS(x, y, -1, -1, coords, c)
-
 				count += searchXMAS(x, y, 0, 1, coords, c)
-
 				count += searchXMAS(x, y, 1, 0, coords, c)
-
 				count += searchXMAS(x, y, 0, -1, coords, c)
-
 				count += searchXMAS(x, y, -1, 0, coords, c)
-
 			}
 		}
 	}
