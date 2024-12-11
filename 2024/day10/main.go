@@ -101,9 +101,6 @@ func main() {
 	trailScore := countTrailScore(board, true)
 	fmt.Println("part1: ", trailScore)
 
-	contents = readFileIntoContents("input.txt")
-	board = createBoard(contents)
 	trailScore = countTrailScore(board, false)
 	fmt.Println("part2: ", trailScore)
-
 }
