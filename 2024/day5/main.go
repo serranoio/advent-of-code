@@ -74,14 +74,10 @@ func appearInList(list []int, num int, update []int) int {
 
 func calculateUpdate(pageOrderingRules map[int][]int, update []int) int {
 	for i, num := range update {
-		// 75
-		// [list]
 		list := pageOrderingRules[num]
 		if appearInList(list, num, update[i+1:]) == 0 {
 			return 0
 		}
-		// entire list on the right has to exist on the left
-
 	}
 
 	return 1
@@ -95,36 +91,13 @@ func fixList(pageOrderingRules map[int][]int, update []int) int {
 		behindList := update[i+1:]
 
 		begI := i
-		if appearInList2(rules, num, behindList) == 0 {
+		if appearInList(rules, num, behindList) == 0 {
 			update[begI], update[begI+1] = update[begI+1], update[begI]
 			i = -1
 		}
 	}
 
 	return update[len(update)/2]
-}
-
-func appearInList2(rules []int, num int, update []int) int {
-	if len(update) == 0 {
-		return 1
-	}
-
-	for _, item := range update {
-		found := false
-		for _, rule := range rules {
-			if item == rule {
-				found = true
-			}
-		}
-
-		if found {
-			return 1
-		} else {
-			return 0
-		}
-	}
-
-	return 0
 }
 
 func calculateUpdates(pageOrderingRules map[int][]int, updates [][]int) (int, int) {
